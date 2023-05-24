@@ -12,6 +12,7 @@ import style from "./App.module.css"
 function App() {
   const[modalActiv,modalActivFunction]=useState(false)
   const[modalActivSignIn,modalActivSignInFunction]=useState(false)
+  const[modalActivSignUp,modalActivSignUpFunction]=useState(false)
   const includeModal=(e)=>{
     e.preventDefault()
     console.log('aaaa')
@@ -27,7 +28,12 @@ function App() {
   return (
     <div className={style.App} >
       <ModalSignIn
-      modalActivSignIn={modalActivSignIn}/>
+      modalActivSignIn={modalActivSignIn}
+      modalActivSignUp={modalActivSignUp}
+      modalActivSignUpFunction={modalActivSignUpFunction}
+      />
+
+      
      <ModalFilter
      modalActiv={modalActiv}
      includeModal={includeModal}

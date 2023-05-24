@@ -21,14 +21,15 @@ export const Header=({includeModal,includeModalSignIn})=>{
 </svg>
 </div>
 <div className={styles.headerNavigatin}>
-<Input className={styles.header_input} placeholder="Search" ></Input>
+<Input type="text" className={styles.header_input} placeholder="Search" ></Input>
 <div className={styles.menuUsers}>
 { (localStorage.getItem('test'))?
     <div className={styles.menuAuth}>
     <div className={styles.avatar}></div>
     <div className={styles.nicname}><h3>Andrey Andrey</h3></div>
     </div>
-    :<div className={`${styles.nicname}`}><h3 className={styles.auth}><Link className={styles.linkModal} onClick={includeModalSignIn}>Sign in</Link></h3></div>}
+    :<div className={`${styles.nicname}`}><h3 className={styles.auth}><Link className={styles.linkModal} onClick={includeModalSignIn}>Sign in</Link></h3></div>
+    }
     <div className={styles.filterMenu}>
         <Link className={styles.linkModal} onClick={includeModal}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

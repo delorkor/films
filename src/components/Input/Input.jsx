@@ -8,5 +8,5 @@ export const Input=forwardRef(
            value={props.value}
            {...props}
            ref={ref}
-           type="text" />)
+           type={props.type} />)
 })

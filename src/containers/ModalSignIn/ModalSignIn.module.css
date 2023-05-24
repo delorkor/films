@@ -96,3 +96,22 @@ margin-top: 40px;
     font-size: 24px;
     line-height: 36px;  
 }
+
+
+.headerModal{
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 32px;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #80858B;;
+}
+
+.headerModalLink{
+   cursor: pointer;
+    color: #7B61FF;
+}
