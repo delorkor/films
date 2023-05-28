@@ -1,12 +1,20 @@
 import { forwardRef } from "react";
-
+import style from "./input.module.css"
 export const Input=forwardRef(
-(props,ref)=>{
+({className,placeholder,value,type,error,styleError, ...rest},ref)=>{
 
-    return( <input className={props.className}
-           placeholder={props.placeholder} 
-           value={props.value}
-           {...props}
+    return(
+        <>
+        <input className={className}
+           placeholder={placeholder} 
+           value={value}
+           {...rest}
            ref={ref}
-           type={props.type} />)
+           type={type}
+        //    onChange={onChange}
+           />
+            {error && <span className={style.styleError}>{error}</span>}
+           </>
+           )
+           
 })

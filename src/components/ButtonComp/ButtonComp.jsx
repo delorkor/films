@@ -1,4 +1,4 @@
 export const ButtonComp=(props)=>{
 
-    return  <button className={props.className}>{props.children}</button>
+    return  <button onClick={props.onClick} className={props.className}>{props.children}</button>
 }

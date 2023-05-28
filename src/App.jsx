@@ -1,13 +1,13 @@
 import {useState} from "react";
 
-import { ModalSignIn } from "./containers/ModalSignIn/ModalSignIn";
+import { ModalSignIn } from "./pages/ModalSignIn/ModalSignIn";
 import { Header } from "./containers/Header/Header";
 import { Main } from "./pages/Main/Main";
 import { ModalFilter } from "./containers/ModalFilter/ModalFilter";
 import { Navigation } from "./containers/Navigation/Navigation";
-
-import style from "./App.module.css"
-
+import { RouterProvider } from "react-router-dom";
+import style from "./App.module.css";
+// import router from "./routes/router";
 
 function App() {
   const[modalActiv,modalActivFunction]=useState(false)
@@ -27,6 +27,9 @@ function App() {
 
   return (
     <div className={style.App} >
+
+{/* <RouterProvider router={router}/> */}
+
       <ModalSignIn
       modalActivSignIn={modalActivSignIn}
       modalActivSignUp={modalActivSignUp}

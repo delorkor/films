@@ -33,6 +33,20 @@ height: 540px;
 background: #242426;
 border-radius: 10px;
 }
+
+
+.windowRegister{
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+    width: 574px;
+    min-height: 732px;
+    background: #242426;
+    border-radius: 10px;
+}
 .buttinAuth{
     width: 100%;
     height: 56px;
@@ -114,4 +128,13 @@ margin-top: 40px;
 .headerModalLink{
    cursor: pointer;
     color: #7B61FF;
+}
+
+.logo{
+
+    width: 158px;
+    height: 40px;
+    position: absolute;
+    top:43px;
+    left: 62px;
 }
