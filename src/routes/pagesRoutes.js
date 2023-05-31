@@ -1,7 +1,7 @@
-const pagesRoutes={
-MAIN:'/',
-AUTH: '/auth',
+const pagesRoutes = {
+  MAIN: "/",
+  AUTH: "/auth",
+  MOVIE: "/add/movie",
+};
 
-}
-
-export default pagesRoutes
+export default pagesRoutes;

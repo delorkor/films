@@ -11,7 +11,7 @@ export const ModalFilter=({classes,modalActiv,includeModal})=>{
     activSortFunction(!activSort)
   }
 
-    return( <nav className={(modalActiv)?classes[0]: classes[1]} >
+    return(<nav className={(modalActiv)?style.navClass:style.ModalFilterNone}> <div className={style.ModalFilterActiv} >
 <div className={style.modalHeader}>
 <div className={style.modalHeaderText}>filter</div>
 <Link onClick={includeModal} className={style.modalHeaderExit}>x</Link>
@@ -48,5 +48,6 @@ export const ModalFilter=({classes,modalActiv,includeModal})=>{
 </div>
 
 
+    </div>
     </nav>)
 }

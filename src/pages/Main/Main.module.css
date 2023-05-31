@@ -1,6 +1,5 @@
-
-   .Main{
-   display: flex;
-   justify-content: space-between;
-   width: 1490px;
-  }
+.Main {
+  display: flex;
+  justify-content: space-around;
+  width: 77.6%;
+}

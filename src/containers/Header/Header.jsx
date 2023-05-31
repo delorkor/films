@@ -2,8 +2,17 @@ import {Input} from "../../components/Input/Input"
 import styles from "./Header.module.css"
 import {Link} from "../../components/Link/Link"
 import {useState} from "react";
-export const Header=({includeModal,includeModalSignIn})=>{
- 
+import { NavLink } from "react-router-dom";
+import { ModalFilter } from "../ModalFilter/ModalFilter";
+import pagesRoutes from "../../routes/pagesRoutes";
+export const Header=()=>{
+    const[modalActiv,modalActivFunction]=useState(false)
+
+  const includeModal=(e)=>{
+    e.preventDefault()
+    console.log('aaaa')
+    modalActivFunction(!modalActiv)
+  }
 
 
     return(
@@ -20,20 +29,22 @@ export const Header=({includeModal,includeModalSignIn})=>{
 <path d="M137.931 14.5616L137.288 10.1221C141.36 9.41177 145.294 9.0566 149.09 9.0566C152.152 9.0566 154.403 9.66334 155.842 10.8768C157.281 12.0607 158 14.1324 158 17.0921V31.5649H152.627L151.938 28.2353C149.672 30.8102 146.886 32.0977 143.579 32.0977C141.406 32.0977 139.63 31.5501 138.252 30.455C136.874 29.3304 136.185 27.7765 136.185 25.7936V23.5738C136.185 21.8276 136.798 20.4661 138.022 19.4895C139.247 18.5128 140.946 18.0244 143.12 18.0244H151.203V17.0477C151.172 15.923 150.897 15.1683 150.376 14.7836C149.887 14.3988 148.922 14.2064 147.483 14.2064C144.972 14.2064 141.788 14.3248 137.931 14.5616ZM142.891 24.0622V24.9057C142.891 26.4151 143.778 27.1698 145.554 27.1698C147.391 27.1698 149.274 26.4595 151.203 25.0388V21.9756H145.095C143.625 22.0052 142.891 22.7007 142.891 24.0622Z" fill="white"/>
 </svg>
 </div>
+<div className={styles.headerNavigatinInput}><Input type="text" className={styles.header_input} placeholder="Search" ></Input></div>
 <div className={styles.headerNavigatin}>
-<Input type="text" className={styles.header_input} placeholder="Search" ></Input>
+<ModalFilter modalActiv={modalActiv} includeModal={includeModal} />
+
 <div className={styles.menuUsers}>
 { (localStorage.getItem('test'))?
     <div className={styles.menuAuth}>
     <div className={styles.avatar}></div>
     <div className={styles.nicname}><h3>Andrey Andrey</h3></div>
     </div>
-    :<div className={`${styles.nicname}`}><h3 className={styles.auth}><Link className={styles.linkModal} onClick={includeModalSignIn}>Sign in</Link></h3></div>
+    :<div className={`${styles.nicname}`}><h3 className={styles.auth}><NavLink to={pagesRoutes.AUTH} style={ {textDecoration:'none',color:"#fff"}} >Sign in</NavLink></h3></div>
     }
     <div className={styles.filterMenu}>
         <Link className={styles.linkModal} onClick={includeModal}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M17 10L12 14L7 10" stroke="#AFB2B6" stroke-width="2" stroke-linecap="round"/>
+<path d="M17 10L12 14L7 10" stroke="#AFB2B6" strokeWidth="2" strokeLinecap="round"/>
 </svg>
 </Link>
     </div>
