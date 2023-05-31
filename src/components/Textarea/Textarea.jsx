@@ -1,3 +1,5 @@
-export const Textarea = ({ rows, cols }) => {
-  return <textarea name="" cols={cols} rows={rows}></textarea>;
+export const Textarea = ({ rows, cols, className }) => {
+  return (
+    <textarea className={className} name="" cols={cols} rows={rows}></textarea>
+  );
 };

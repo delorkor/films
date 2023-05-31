@@ -47,6 +47,7 @@
   text-transform: uppercase;
   margin-right: 40px;
   margin-top: 32px;
+  cursor: pointer;
 }
 
 .InpytDescrFileNone {
@@ -74,6 +75,16 @@
   padding-left: 40px;
   padding-right: 40px;
 }
+.Textarea {
+  background-color: #323537;
+  color: #fff;
+  width: 100%;
+
+  height: 100%;
+  resize: none;
+  overflow: hidden;
+  border: none;
+}
 
 .TextDescr {
   font-family: "Exo 2";
@@ -84,10 +95,24 @@
   color: #fff;
 }
 
-.Textarea {
-  background-color: #323537;
-  color: #fff;
+.blockButton {
+  padding: 40px 0 40px;
+  margin-top: 30px;
   width: 100%;
-  height: 100%;
-  resize: none;
+  display: flex;
+  justify-content: right;
+}
+.ButtonAdd {
+  margin-left: 40px;
+  width: 266px;
+  height: 54px;
+  background: #323537;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+.ButtonAdd:hover {
+  background-color: #7b61ff;
 }

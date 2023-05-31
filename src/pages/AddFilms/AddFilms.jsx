@@ -95,10 +95,16 @@ export const AddFilms = () => {
             </div>
           </div>
           <div className={style.blockTextarea}>
-            <Textarea cols={30} rows={10} className={style.Textarea}></Textarea>
+            <Textarea className={style.Textarea}></Textarea>
           </div>
-
-          <button onClick={hendlerUpload}>download</button>
+          <div className={style.blockButton}>
+            <button className={style.ButtonAdd} onClick={hendlerUpload}>
+              Cancel
+            </button>
+            <button className={style.ButtonAdd} onClick={hendlerUpload}>
+              Save
+            </button>
+          </div>
         </form>
       </div>
     </div>
