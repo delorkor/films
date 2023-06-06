@@ -1,4 +1,9 @@
-export const ButtonComp=(props)=>{
+import { forwardRef } from "react";
 
-    return  <button onClick={props.onClick} className={props.className}>{props.children}</button>
-}
+export const ButtonComp = forwardRef((props, ref) => {
+  return (
+    <button onClick={props.onClick} className={props.className} ref={ref}>
+      {props.children}
+    </button>
+  );
+});
