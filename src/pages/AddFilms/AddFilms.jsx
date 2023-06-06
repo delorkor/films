@@ -37,9 +37,8 @@ export const AddFilms = () => {
     const form = new FormData();
     // console.log(form);
     form.append("films", setFiles);
-    
-    console.log(form);
-    // form.append("name_img_film", setPoster);
+    // console.log(form);
+    form.append("name_img_film", setPoster);
     // console.log(form);
     // const res = await fetch("https://diplom.loc/api/add/Films", {
     //   method: "POST",
@@ -48,7 +47,7 @@ export const AddFilms = () => {
 
     // const data = await res.json();
     // console.log(form);
-    // addFilms(form);
+    addFilms(form);
   };
 
   return (
