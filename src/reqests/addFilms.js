@@ -1,12 +1,14 @@
 import axios from "axios";
+
 export const addFilms = async (data) => {
-  //   console.log(data);
-  const Films = await fetch("https://diplom.loc/api/add/Films", {
-    method: "POST",
-    body: data,
-  });
-
-  const FilmsData = await Films.json();
-
-  return FilmsData;
+  const token = JSON.parse(localStorage.getItem("access_token"));
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const Films = await axios.post(
+    "https://diplom.loc/api/add/Films",
+    data,
+    config
+  );
+  return Films;
 };

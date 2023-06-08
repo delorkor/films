@@ -5,16 +5,17 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ModalFilter } from "../ModalFilter/ModalFilter";
 import pagesRoutes from "../../routes/pagesRoutes";
+import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 
 export const Header = () => {
   const [modalActiv, modalActivFunction] = useState(false);
 
   const includeModal = (e) => {
     e.preventDefault();
-    console.log("aaaa");
+    // console.log(localStorage.getItem("user"));
     modalActivFunction(!modalActiv);
   };
-
+  console.log(JSON.parse(localStorage.getItem("user")));
   return (
     <header className={styles.header}>
       <div className={styles.containers}>
@@ -69,11 +70,11 @@ export const Header = () => {
                 modalActiv={modalActiv}
                 includeModal={includeModal}
               />
-              {localStorage.getItem("test") ? (
+              {localStorage.getItem("user") ? (
                 <div className={styles.menuAuth}>
                   <div className={styles.avatar}></div>
                   <div className={styles.nicname}>
-                    <h3>Andrey Andrey</h3>
+                    <h3>{}</h3>
                   </div>
                 </div>
               ) : (

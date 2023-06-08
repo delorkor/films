@@ -7,19 +7,30 @@ import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 import { schema } from "./data";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { postUsers } from "../../reqests/postUsers";
+import { AuthUser } from "../../reqests/AuthUser";
 export const ModalSignIn = () => {
   const [modalActivSignUp, modalActivSignUpFunction] = useState(false);
+  // const [modaAuth, modalAuthFunction] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
-
+  } = useForm();
+  // { resolver: yupResolver(schema) }
   const onSubmitSihnIn = async (data) => {
     // e.preventDefault()
-    console.log(data);
+    // console.log(data);
     const Users = await postUsers(data);
-    console.log(Users);
+
+    // console.log(Users);
+  };
+  const UserAuth = async (data) => {
+    // e.preventDefault()
+    console.log(data);
+    const UsersAuth = await AuthUser(data);
+
+    localStorage.setItem("user", JSON.stringify(UsersAuth.data));
+    console.log(UsersAuth.data);
   };
   const OpenSignUp = (e) => {
     // e.preventDefault()
@@ -66,7 +77,7 @@ export const ModalSignIn = () => {
       </div>
       {!modalActivSignUp ? (
         <div className={style.window}>
-          <form onSubmit={handleSubmit(onSubmitSihnIn)}>
+          <form onSubmit={handleSubmit(UserAuth)}>
             <div className={style.HeadingModal}>Sign In</div>
             <div className={style.textEmail}>
               <span className={style.txtLable}>Email</span>
@@ -79,7 +90,6 @@ export const ModalSignIn = () => {
               ></Input>
             </div>
             <div className={style.textPasword}>
-              {" "}
               <span className={style.txtLable}>Password</span>
               <Input
                 type="pasword"
@@ -91,15 +101,16 @@ export const ModalSignIn = () => {
               <span className={style.txtLablePas}>Forgot password?</span>
             </div>
             <ButtonComp className={style.buttinAuth}>Sign in</ButtonComp>
-            <div className={style.headerModal}>
-              Don’t have an account?{" "}
-              <Link className={style.headerModalLink} onClick={OpenSignUp}>
-                Sign Up
-              </Link>
-            </div>
           </form>
+          <div className={style.headerModal}>
+            Don’t have an account?
+            <Link className={style.headerModalLink} onClick={OpenSignUp}>
+              Sign Up
+            </Link>
+          </div>
         </div>
       ) : (
+        ///////////////////////////////////////////////
         <div className={style.windowRegister}>
           <form onSubmit={handleSubmit(onSubmitSihnIn)}>
             <div className={style.HeadingModal}>Sign Up</div>
@@ -149,7 +160,7 @@ export const ModalSignIn = () => {
                 onChange={() => {}}
               ></Input>
             </div>
-            <ButtonComp className={style.buttinAuth}>Sign in</ButtonComp>
+            <ButtonComp className={style.buttinAuth}>Sign up</ButtonComp>
             <div className={style.headerModal}>
               Already have an account?{" "}
               <Link className={style.headerModalLink} onClick={OpenSignUp}>

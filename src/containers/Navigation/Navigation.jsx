@@ -4,6 +4,7 @@ import { Input } from "../../components/Input/Input";
 import { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import pagesRoutes from "../../routes/pagesRoutes";
+import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 export const Navigation = () => {
   const [setFiles, setFilesFunction] = useState(null);
   const filePicker = useRef(null);
@@ -29,6 +30,10 @@ export const Navigation = () => {
   const downloadFile = () => {
     filePicker.current.click();
   };
+  const exit = (e) => {
+    // e.preventDefault();
+    delete localStorage.user;
+  };
 
   return (
     <nav className={style.Navigation}>
@@ -49,6 +54,11 @@ export const Navigation = () => {
           <NavLink to={pagesRoutes.MOVIE} className={style.Linknavigation}>
             add a movie
           </NavLink>
+        </li>
+        <li>
+          <Link className={style.Linknavigation} onClick={exit}>
+            exit
+          </Link>
         </li>
         {/* <li>
           <input type="file" ref={filePicker} onChange={hendlerChange} />

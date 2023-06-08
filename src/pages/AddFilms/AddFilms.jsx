@@ -18,11 +18,11 @@ export const AddFilms = () => {
     posterPicker.current.click();
   };
   const hendlerChange = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     setFilesFunction(e.target.files[0]);
   };
   const PosterChange = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     setPoserFunction(e.target.files[0]);
   };
 
@@ -33,27 +33,31 @@ export const AddFilms = () => {
   } = useForm();
 
   const hendlerUpload = async (data) => {
-    // console.log(data);
     const form = new FormData();
-    // console.log(form);
-    form.append("films", setFiles);
-    // console.log(form);
-    form.append("name_img_film", setPoster);
-    // console.log(form);
-    // const res = await fetch("https://diplom.loc/api/add/Films", {
-    //   method: "POST",
-    //   body: form,
-    // });
 
-    // const data = await res.json();
-    // console.log(form);
+    form.append("films", setFiles);
+    form.append("name", data["name"]);
+    form.append("category_id", data["category_id"]);
+    form.append("description", data["description"]);
+    form.append("Year", data["Year"]);
+    // console.log(data);
+    // for (let key in data) {
+    //   form.append(key, data[key]);
+    // }
+
+    form.append("name_img_film", setPoster);
+    console.log(form.get("Year"));
+
     addFilms(form);
   };
 
   return (
     <div className={style.addFilms}>
       <div className={style.addFilmsWrapper}>
-        <form onSubmit={handleSubmit(hendlerUpload)}>
+        <form
+          onSubmit={handleSubmit(hendlerUpload)}
+          encType="multipart/form-data"
+        >
           <div className={style.blockDescription}>
             <div className={style.InputWrapper}>
               <div className={style.TextDescr}>Name</div>
@@ -68,19 +72,19 @@ export const AddFilms = () => {
             <Input
               type="file"
               ref={filePicker}
-              className={style.InpytDescrFileNone}
+              // className={style.InpytDescrFileNone}
               placeholder="film"
               onChange={hendlerChange}
             ></Input>
             <Input
               type="file"
               ref={posterPicker}
-              className={style.InpytDescrFileNone}
+              // className={style.InpytDescrFileNone}
               placeholder="poster"
               onChange={PosterChange}
             ></Input>
 
-            <ButtonComp className={style.InpytDescrFile} onClick={downloadFile}>
+            {/* <ButtonComp className={style.InpytDescrFile} onClick={downloadFile}>
               film download
             </ButtonComp>
             <ButtonComp
@@ -88,20 +92,21 @@ export const AddFilms = () => {
               onClick={downloadPoster}
             >
               poster download
-            </ButtonComp>
+            </ButtonComp> */}
             {/* </div> */}
           </div>
 
           <div className={style.blockDescriptionDate}>
             <div className={style.InputWrapper}>
-              <div className={style.TextDescr}>Ganre</div>
+              <div className={style.TextDescr}>Category</div>
               <select
                 {...register("category_id")}
-                name="category"
+                name="category_id"
                 className={style.InpytDescr}
               >
-                <option value="comedy">comedy</option>
-                <option value="horrors">horrors</option>
+                <option value="2">movies</option>
+                <option value="3">serials</option>
+                <option value="4">cartoons</option>
               </select>
             </div>
 
@@ -123,10 +128,10 @@ export const AddFilms = () => {
             ></Textarea>
           </div>
           <div className={style.blockButton}>
-            <ButtonComp className={style.ButtonAdd} onClick={hendlerUpload}>
+            <ButtonComp className={style.ButtonAdd} onClick={() => {}}>
               Cancel
             </ButtonComp>
-            <ButtonComp className={style.ButtonAdd} onClick={hendlerUpload}>
+            <ButtonComp className={style.ButtonAdd} type="submit">
               Save
             </ButtonComp>
           </div>

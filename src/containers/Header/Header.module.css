@@ -126,3 +126,17 @@ h3 {
 .wrapper_input {
   width: 79.37%;
 }
+.ButtonAdd {
+  margin-left: 40px;
+  width: 60px;
+  height: 54px;
+  background: #323537;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+.ButtonAdd:hover {
+  background-color: #7b61ff;
+}

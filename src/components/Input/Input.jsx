@@ -8,6 +8,7 @@ export const Input = forwardRef(
     return (
       <>
         <input
+          data-date-format="YYYY-MMMM-DD"
           className={className}
           placeholder={placeholder}
           value={value}
