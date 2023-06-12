@@ -1,21 +1,32 @@
 import { Input } from "../../components/Input/Input";
 import styles from "./Header.module.css";
 import { Link } from "../../components/Link/Link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ModalFilter } from "../ModalFilter/ModalFilter";
 import pagesRoutes from "../../routes/pagesRoutes";
+import { useDispatch, useSelector } from "react-redux";
+import { setFirstId } from "../../store/features/UserSlice";
 import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const [modalActiv, modalActivFunction] = useState(false);
 
+  const name = useSelector((state) => state.user.name);
+
+  console.log(name);
   const includeModal = (e) => {
     e.preventDefault();
     // console.log(localStorage.getItem("user"));
     modalActivFunction(!modalActiv);
   };
-  console.log(JSON.parse(localStorage.getItem("user")));
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      const user = JSON.parse(localStorage.getItem("user")).user;
+      dispatch(setFirstId(user));
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <div className={styles.containers}>
@@ -72,9 +83,9 @@ export const Header = () => {
               />
               {localStorage.getItem("user") ? (
                 <div className={styles.menuAuth}>
-                  <div className={styles.avatar}></div>
+                  <div className={styles.avatar}>{name[0] ?? ""}</div>
                   <div className={styles.nicname}>
-                    <h3>{}</h3>
+                    <h3>{name ?? ""}</h3>
                   </div>
                 </div>
               ) : (

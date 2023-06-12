@@ -5,7 +5,10 @@ import { Input } from "../../components/Input/Input";
 import { addFilms } from "../../reqests/addFilms";
 import { useForm } from "react-hook-form";
 import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
+import { useNavigate } from "react-router-dom";
+import pagesRoutes from "../../routes/pagesRoutes";
 export const AddFilms = () => {
+  const navigate = useNavigate();
   const [setFiles, setFilesFunction] = useState(null);
   const [setPoster, setPoserFunction] = useState(null);
   const filePicker = useRef(null);
@@ -48,7 +51,9 @@ export const AddFilms = () => {
     form.append("name_img_film", setPoster);
     console.log(form.get("Year"));
 
-    addFilms(form);
+    if (addFilms(form)) {
+      navigate(pagesRoutes.MAIN);
+    }
   };
 
   return (

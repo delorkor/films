@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../components/Input/Input";
 import { useForm } from "react-hook-form";
 import { Link } from "../../components/Link/Link";
@@ -8,9 +8,16 @@ import { schema } from "./data";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { postUsers } from "../../reqests/postUsers";
 import { AuthUser } from "../../reqests/AuthUser";
+import { useDispatch, useSelector } from "react-redux";
+import { setFirstId } from "../../store/features/UserSlice";
+import { useNavigate } from "react-router-dom";
+import pagesRoutes from "../../routes/pagesRoutes";
 export const ModalSignIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const name = useSelector((state) => state.user.name);
   const [modalActivSignUp, modalActivSignUpFunction] = useState(false);
-  // const [modaAuth, modalAuthFunction] = useState(false);
+  console.log(name);
   const {
     register,
     handleSubmit,
@@ -18,22 +25,16 @@ export const ModalSignIn = () => {
   } = useForm();
   // { resolver: yupResolver(schema) }
   const onSubmitSihnIn = async (data) => {
-    // e.preventDefault()
-    // console.log(data);
     const Users = await postUsers(data);
-
-    // console.log(Users);
   };
   const UserAuth = async (data) => {
-    // e.preventDefault()
-    console.log(data);
-    const UsersAuth = await AuthUser(data);
+    const UsersAuth = (await AuthUser(data)).data;
+    dispatch(setFirstId(UsersAuth.user));
+    localStorage.setItem("user", JSON.stringify(UsersAuth));
 
-    localStorage.setItem("user", JSON.stringify(UsersAuth.data));
-    console.log(UsersAuth.data);
+    navigate(pagesRoutes.MAIN);
   };
   const OpenSignUp = (e) => {
-    // e.preventDefault()
     modalActivSignUpFunction(!modalActivSignUp);
   };
 

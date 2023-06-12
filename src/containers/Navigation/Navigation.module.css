@@ -21,4 +21,9 @@
 .Linknavigation {
   margin-bottom: 40px;
   cursor: pointer;
+  text-decoration: none;
+  color: #80858b;
+}
+.Linknavigation:hover {
+  color: #7b61ff;
 }

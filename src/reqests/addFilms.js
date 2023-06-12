@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const addFilms = async (data) => {
-  const token = JSON.parse(localStorage.getItem("access_token"));
+  const token = JSON.parse(localStorage.getItem("user")).access_token;
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };

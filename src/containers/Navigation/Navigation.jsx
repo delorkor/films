@@ -2,10 +2,12 @@ import { Link } from "../../components/Link/Link";
 import style from "./Navigation.module.css";
 import { Input } from "../../components/Input/Input";
 import { useState, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import pagesRoutes from "../../routes/pagesRoutes";
 import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
+
 export const Navigation = () => {
+  const navigate = useNavigate();
   const [setFiles, setFilesFunction] = useState(null);
   const filePicker = useRef(null);
   const hendlerChange = (e) => {
@@ -31,8 +33,9 @@ export const Navigation = () => {
     filePicker.current.click();
   };
   const exit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     delete localStorage.user;
+    navigate(pagesRoutes.MAIN);
   };
 
   return (
