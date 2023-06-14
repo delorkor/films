@@ -1,6 +1,7 @@
 import axios from "axios";
-export const PagesFilms = async () => {
-  const User = await axios.get(`https://diplom.loc/api/Films`);
+export const PagesFilms = async (PagenNumber = 1) => {
+  let url = `http://diplom.loc/api/Films?page=${PagenNumber}`;
+  const User = await axios.get(url);
   // console.log(User.data);
   return User.data;
 };

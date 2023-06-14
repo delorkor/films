@@ -5,27 +5,53 @@ import { PagesFilms } from "../../reqests/PagesFilms";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilms } from "../../store/features/FilmsSlice";
+import { Link } from "../../components/Link/Link";
 export const Main = () => {
-  // const [filmsState, filmsCreate] = useState([]);
+  const [pageNum, pageNumFunction] = useState("");
   const films = useSelector((state) => state.films.data);
   const dispatch = useDispatch();
+  console.log(pageNum);
+  const urlPage = async (e) => {
+    console.log(e.target.textContent);
+    await PagesFilms(e.target.textContent);
+  };
+  const dataFilms = async (page = 1) => {
+    const films = await PagesFilms(page);
+    // console.log(films);
 
-  const dataFilms = async () => {
-    const films = await PagesFilms();
-
-    // localStorage.setItem("films", JSON.stringify(films));
-    // const allFilms = JSON.parse(localStorage.getItem("films"));
     dispatch(setFilms(films));
   };
   useEffect(() => {
     dataFilms();
   }, []);
-  console.log(films);
+
   return (
     <div className={styles.Main}>
-      {/* {films?.data.map((e) => {
-        console.log(e);
-      })} */}
+      <div className={styles.content}>
+        {films &&
+          films.data.map((e) => {
+            return <MovieBlock key={e.id} data={e} />;
+          })}
+      </div>
+
+      <div className={styles.pagenation}>
+        {films &&
+          films.links.map((e, index) => {
+            console.log(e);
+            return (
+              <Link
+                // url={e.url}
+                key={index}
+                onClick={(e) => {
+                  dataFilms(e.target.textContent);
+                }}
+                className={styles.PagenationLink}
+              >
+                {e.label}
+              </Link>
+            );
+          })}
+      </div>
     </div>
   );
 };

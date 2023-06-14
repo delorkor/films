@@ -7,7 +7,7 @@ export const addFilms = async (data) => {
     headers: { Authorization: `Bearer ${token}` },
   };
   const Films = await axios.post(
-    "https://diplom.loc/api/add/Films",
+    "http://diplom.loc/api/add/Films",
     data,
     config
   );

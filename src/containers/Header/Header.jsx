@@ -15,7 +15,7 @@ export const Header = () => {
 
   const name = useSelector((state) => state.user.name);
 
-  console.log(name);
+  // console.log(name);
   const includeModal = (e) => {
     e.preventDefault();
     // console.log(localStorage.getItem("user"));
