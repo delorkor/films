@@ -1,57 +1,67 @@
-import {createBrowserRouter,} from "react-router-dom";
-import {useState} from "react";
+import { createBrowserRouter } from "react-router-dom";
 import pagesRoutes from "./pagesRoutes";
 import { ModalSignIn } from "./../pages/ModalSignIn/ModalSignIn";
 import { Header } from "./../containers/Header/Header";
 import { Main } from "./../pages/Main/Main";
 import { AddFilms } from "./../pages/AddFilms/AddFilms";
 import { Navigation } from "./../containers/Navigation/Navigation";
-
-import style from "./../App.module.css"
-
+import { FilmPage } from "./../pages/FilmPage/FilmPage";
+import { Slyder } from "../containers/Slyder/Slyder";
+import style from "./../App.module.css";
 
 const router = createBrowserRouter([
-    {
-      path: pagesRoutes.MAIN,
-      element: (
+  {
+    path: pagesRoutes.MAIN,
+    element: (
       <>
-    
-  
-     <Header />
-    
-      <div className={style.containers}>
-        <div className={style.mainWrapper}>
-     <Navigation/>
-     <Main/>
-     </div>
-     </div>
-    
-      </>),
-   
-    },
-    {
-      path:  pagesRoutes.AUTH,
-      element: <ModalSignIn />,
-    },
+        <Header />
 
-    {
-      path: pagesRoutes.MOVIE,
-      element: (
+        <div className={style.containers}>
+          <div className={style.mainWrapper}>
+            <Navigation />
+            <Main />
+          </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    path: pagesRoutes.AUTH,
+    element: <ModalSignIn />,
+  },
+
+  {
+    path: pagesRoutes.MOVIE,
+    element: (
       <>
-    
-  
-     <Header />
-    
-      <div className={style.containers}>
-        <div className={style.mainWrapper}>
-     <Navigation/>
-     <AddFilms/>
-     </div>
-     </div>
-    
-      </>),
-   
-    },
-  ]);
+        <Header />
 
-  export default router
+        <div className={style.containers}>
+          <div className={style.mainWrapper}>
+            <Navigation />
+            <AddFilms />
+          </div>
+        </div>
+      </>
+    ),
+  },
+
+  {
+    path: pagesRoutes.MOVIE_PAGE,
+    element: (
+      <>
+        <Header />
+
+        <div className={style.containers}>
+          <div className={style.mainWrapper}>
+            <Navigation />
+            <FilmPage />
+          </div>
+          <Slyder />
+        </div>
+      </>
+    ),
+  },
+]);
+
+export default router;
