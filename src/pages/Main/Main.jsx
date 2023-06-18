@@ -32,7 +32,7 @@ export const Main = () => {
       <div className={styles.content}>
         {films &&
           films.data.map((e) => {
-            return <MovieBlock key={e.id} data={e} />;
+            return  <MovieBlock key={e.id} data={e} />;
           })}
       </div>
 

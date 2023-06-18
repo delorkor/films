@@ -47,7 +47,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: pagesRoutes.MOVIE_PAGE,
+    path: pagesRoutes.MOVIE_PAGE + "/:id",
+    louder: "id",
     element: (
       <>
         <Header />
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
             <Navigation />
             <FilmPage />
           </div>
+            <Slyder />
           <Slyder />
         </div>
       </>

@@ -7,7 +7,7 @@ export const MovieBlock = ({ data }) => {
   return (
     <div className={style.MovieBlock}>
       <div className={style.BoxImg}>
-        <NavLink to={pagesRoutes.MOVIE_PAGE}>
+        <NavLink to={pagesRoutes.MOVIE_PAGE + `/${data.id}`}>
           {" "}
           <img
             className={style.img}
