@@ -6,7 +6,7 @@ export const Slyder = () => {
   const [line, lineFunction] = useState(0);
   const sliderLine = React.createRef();
 
-  const Right = () => {
+  const Left = () => {
     lineFunction((lineOffset) => {
       let newOffset = lineOffset + 304;
       console.log(newOffset);
@@ -20,7 +20,7 @@ export const Slyder = () => {
       return newOffset;
     });
   };
-  const Left = () => {
+  const Right = () => {
     lineFunction((lineOffset) => {
       let newOffset = lineOffset - 304;
       console.log(newOffset);

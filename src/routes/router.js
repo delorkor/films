@@ -8,6 +8,7 @@ import { Navigation } from "./../containers/Navigation/Navigation";
 import { FilmPage } from "./../pages/FilmPage/FilmPage";
 import { Slyder } from "../containers/Slyder/Slyder";
 import style from "./../App.module.css";
+import { date } from "yup";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +48,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: pagesRoutes.MOVIE_PAGE + "/:id",
-    louder: "id",
+    path: pagesRoutes.MOVIE_PAGE + "/" + ":id",
+
     element: (
       <>
         <Header />
@@ -56,13 +57,16 @@ const router = createBrowserRouter([
         <div className={style.containers}>
           <div className={style.mainWrapper}>
             <Navigation />
+
             <FilmPage />
           </div>
-            <Slyder />
+
           <Slyder />
         </div>
       </>
     ),
+
+    loader: ({ params }) => params.id,
   },
 ]);
 

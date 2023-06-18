@@ -2,11 +2,12 @@ import style from "./FilmPage.module.css";
 
 import { useEffect, useState } from "react";
 import { Slyder } from "../../containers/Slyder/Slyder";
-import { useParams } from "react-router-dom";
+import { useParams, useLoaderData } from "react-router-dom";
 
-export const FilmPage = ({ id }) => {
-  // const { id } = useParams;
+export const FilmPage = () => {
+  const id = useLoaderData();
   console.log(id);
+
   const [pageNum, pageNumFunction] = useState("");
   // const films = useSelector((state) => state.films.data);
   // const dispatch = useDispatch();
