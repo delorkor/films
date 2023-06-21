@@ -12,7 +12,7 @@ export const MovieBlock = ({ data }) => {
           <img
             className={style.img}
             src={img}
-            // src={"http://diplom.loc/storage/" + data.name_img_film && img}
+            // src={"http://diplom.loc/storage/" + data.name_img_film}
             alt=""
           />
         </NavLink>

@@ -93,7 +93,7 @@
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 26px;
   line-height: 24px;
   color: #fff;
 }
@@ -118,4 +118,21 @@
 }
 .ButtonAdd:hover {
   background-color: #7b61ff;
+}
+.Check {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-family: "Exo 2";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fff;
+  vertical-align: top;
+}
+.CheckBox {
+  display: inline-block;
 }

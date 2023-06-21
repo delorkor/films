@@ -3,12 +3,22 @@ import style from "./FilmPage.module.css";
 import { useEffect, useState } from "react";
 import { Slyder } from "../../containers/Slyder/Slyder";
 import { useParams, useLoaderData } from "react-router-dom";
-
+import { getOnlyFilms } from "../../reqests/getOnlyFilms";
 export const FilmPage = () => {
   const id = useLoaderData();
-  console.log(id);
+  const [oneFilm, oneFilmFunction] = useState(false);
+  const getFilms = async (id) => {
+    const films = await getOnlyFilms(id);
+    // const films = await PagesFilms(page);
+    oneFilmFunction(films);
+    console.log(films);
+    return films;
+  };
+  useEffect(() => {
+    getFilms(id);
+    console.log(oneFilm.data);
+  }, []);
 
-  const [pageNum, pageNumFunction] = useState("");
   // const films = useSelector((state) => state.films.data);
   // const dispatch = useDispatch();
 
@@ -28,7 +38,15 @@ export const FilmPage = () => {
       <div className={style.wrapper}>
         <div className={style.imgWrapper}>
           <div className={style.imgBlock}>
-            <img className={style.img} src="" alt="" />
+            <img
+              className={style.img}
+              src={
+                oneFilm
+                  ? "http://diplom.loc/storage/" + oneFilm.data.name_img_film
+                  : ""
+              }
+              alt=""
+            />
           </div>
 
           {/* <div className={style.blockLink}>
@@ -38,13 +56,15 @@ export const FilmPage = () => {
         </div>
 
         <div className={style.descriptionFilm}>
-          <h2>Wonder Woman: 1984</h2>
+          <h2>{oneFilm && oneFilm.data.name}</h2>
           <div className={style.tableContent}>
             <table>
               <tbody>
                 <tr>
                   <td className={style.tableTd}>Released:</td>
-                  <td className={style.tableTd}>2011</td>
+                  <td className={style.tableTd}>
+                    {oneFilm && oneFilm.data.Year}
+                  </td>
                 </tr>
                 <tr>
                   <td className={style.tableTd}>ganre:</td>
@@ -67,7 +87,15 @@ export const FilmPage = () => {
               catches the eye of the power-hungry entrepreneur, Maxwell Lord.{" "}
             </div>
             <div className={style.wideowrapper}>
-              <video className={style.wideo} controls src="">
+              <video
+                className={style.wideo}
+                controls
+                src={
+                  oneFilm
+                    ? "http://diplom.loc/storage/" + oneFilm.data.name_film
+                    : ""
+                }
+              >
                 <source src="" />
               </video>
             </div>

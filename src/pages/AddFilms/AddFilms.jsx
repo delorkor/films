@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Textarea } from "../../components/Textarea/Textarea";
 import style from "./addFilms.module.css";
 import { Input } from "../../components/Input/Input";
@@ -7,10 +7,14 @@ import { useForm } from "react-hook-form";
 import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 import { useNavigate } from "react-router-dom";
 import pagesRoutes from "../../routes/pagesRoutes";
+import { getCotegory } from "../../reqests/getCotegory";
+import { getGenre } from "../../reqests/getGenre";
 export const AddFilms = () => {
   const navigate = useNavigate();
   const [setFiles, setFilesFunction] = useState(null);
   const [setPoster, setPoserFunction] = useState(null);
+  const [getCot, getCotegoryFunction] = useState(false);
+  const [getGanre, getGanreFunction] = useState(false);
   const filePicker = useRef(null);
   const posterPicker = useRef(null);
   const downloadFile = () => {
@@ -28,6 +32,16 @@ export const AddFilms = () => {
     // console.log(e.target.files);
     setPoserFunction(e.target.files[0]);
   };
+  const Genre = async () => {
+    const GanreAll = await getGenre();
+    getGanreFunction(GanreAll);
+    return GanreAll;
+  };
+  const Conegory = async () => {
+    const CotegoryAll = await getCotegory();
+    getCotegoryFunction(CotegoryAll);
+    return CotegoryAll;
+  };
 
   const {
     register,
@@ -35,7 +49,14 @@ export const AddFilms = () => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    Conegory();
+    Genre();
+  }, []);
+
+  console.log(getGanre);
   const hendlerUpload = async (data) => {
+    console.log(data);
     const form = new FormData();
 
     form.append("films", setFiles);
@@ -43,7 +64,12 @@ export const AddFilms = () => {
     form.append("category_id", data["category_id"]);
     form.append("description", data["description"]);
     form.append("Year", data["Year"]);
-    // console.log(data);
+    // form.append("genre_id", data["check"]);
+    data["check"].forEach((element) => {
+      form.append("genre_id[]", element);
+    });
+
+    console.log(data);
     // for (let key in data) {
     //   form.append(key, data[key]);
     // }
@@ -109,9 +135,16 @@ export const AddFilms = () => {
                 name="category_id"
                 className={style.InpytDescr}
               >
-                <option value="2">movies</option>
-                <option value="3">serials</option>
-                <option value="4">cartoons</option>
+                {getCot &&
+                  getCot.data.map((items) => {
+                    return (
+                      <>
+                        <option key={items.id} value={items.id}>
+                          {items.text}
+                        </option>
+                      </>
+                    );
+                  })}
               </select>
             </div>
 
@@ -123,6 +156,27 @@ export const AddFilms = () => {
                 className={style.InpytDescr}
                 placeholder="date"
               ></Input>
+            </div>
+          </div>
+          <div className={style.blockDescriptionDate}>
+            <div className={style.TextDescr}>Genre</div>
+
+            <div className={style.Check}>
+              {getGanre &&
+                getGanre.data.map((items) => {
+                  return (
+                    <div>
+                      <input
+                        {...register("check")}
+                        className={style.CheckBox}
+                        key={items.id}
+                        type="checkbox"
+                        value={items.id}
+                      />
+                      {items.name}
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div className={style.blockTextarea}>

@@ -20,10 +20,14 @@
 .imgBlock {
   width: 100%;
   height: 356px;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   border-radius: 20px;
 }
-
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
 .blockLink {
   width: 100%;
   height: 56px;
