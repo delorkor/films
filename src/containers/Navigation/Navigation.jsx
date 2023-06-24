@@ -1,37 +1,39 @@
 import { Link } from "../../components/Link/Link";
 import style from "./Navigation.module.css";
 import { Input } from "../../components/Input/Input";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import pagesRoutes from "../../routes/pagesRoutes";
 import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
-
+import { getGenre } from "../../reqests/getGenre";
+import { getCotegory } from "../../reqests/getCotegory";
 export const Navigation = () => {
+  const [getGanre, getGanreFunction] = useState(false);
+  const [getCoteg, getCotegoryFunction] = useState(false);
   const navigate = useNavigate();
   const [setFiles, setFilesFunction] = useState(null);
-  const filePicker = useRef(null);
+
   const hendlerChange = (e) => {
     console.log(e.target.files);
     setFilesFunction(e.target.files[0]);
   };
 
-  const hendlerUpload = async () => {
-    const form = new FormData();
-    console.log(form);
-    form.append("films", setFiles);
-    // console.log(form.get("films"))
-    // console.log(form)
-    const res = await fetch("https://diplom.loc/api/add/Films", {
-      method: "POST",
-      body: form,
-    });
-
-    const data = await res.json();
+  const Genre = async () => {
+    const GanreAll = await getGenre();
+    getGanreFunction(GanreAll);
+    return GanreAll;
+  };
+  const Cotegory = async () => {
+    const CotegoryAll = await getCotegory();
+    getCotegoryFunction(CotegoryAll);
+    return CotegoryAll;
   };
 
-  const downloadFile = () => {
-    filePicker.current.click();
-  };
+  useEffect(() => {
+    Genre();
+    Cotegory();
+  }, []);
+
   const exit = (e) => {
     e.preventDefault();
     delete localStorage.user;
@@ -40,39 +42,54 @@ export const Navigation = () => {
 
   return (
     <nav className={style.Navigation}>
+      <div className={style.NameList}>Жанры</div>
       <ul className={style.ListNavi}>
-        <li>
-          <Link className={style.Linknavigation}>Home</Link>
-        </li>
-        <li>
-          <Link className={style.Linknavigation}>Trends</Link>
-        </li>
-        <li>
-          <Link className={style.Linknavigation}>Favorites</Link>
-        </li>
-        <li>
-          <Link className={style.Linknavigation}>Settings</Link>
-        </li>
-        <li>
+        {getGanre &&
+          getGanre.data.map((index) => {
+            // console.log(index.id);
+            return (
+              <li key={index.id} className={style.List}>
+                <NavLink
+                  to={pagesRoutes.Genre + "/" + `${index.id}`}
+                  state={`GenreFilms/${index.id}`}
+                  key={index.id}
+                  className={style.Linknavigation}
+                >
+                  {index.name}
+                </NavLink>
+              </li>
+            );
+          })}
+        <li className={style.List}>
           <NavLink to={pagesRoutes.MOVIE} className={style.Linknavigation}>
-            add a movie
+            Добавить фильм
           </NavLink>
         </li>
-        <li>
+        <li className={style.List}>
           <Link className={style.Linknavigation} onClick={exit}>
             exit
           </Link>
         </li>
-        {/* <li>
-          <input type="file" ref={filePicker} onChange={hendlerChange} />
-          file
-        </li>
-        <li>
-          <button onClick={downloadFile}> file download</button>
-        </li>
-        <li>
-          <button onClick={hendlerUpload}>download</button>
-        </li> */}
+      </ul>
+
+      <ul className={style.ListNavi}>
+        <div className={style.NameList}>Котегории</div>
+        {getCoteg &&
+          getCoteg.data.map((index) => {
+            // console.log(index.id);
+            return (
+              <li className={style.List} key={index.id}>
+                <NavLink
+                  to={pagesRoutes.Cotegory + "/" + `${index.id}`}
+                  state={`CategoryFilms/${index.id}`}
+                  key={index.id}
+                  className={style.Linknavigation}
+                >
+                  {index.text}
+                </NavLink>
+              </li>
+            );
+          })}
       </ul>
     </nav>
   );

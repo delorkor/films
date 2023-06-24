@@ -70,9 +70,6 @@ export const AddFilms = () => {
     });
 
     console.log(data);
-    // for (let key in data) {
-    //   form.append(key, data[key]);
-    // }
 
     form.append("name_img_film", setPoster);
     console.log(form.get("Year"));
@@ -159,6 +156,7 @@ export const AddFilms = () => {
             </div>
           </div>
           <div className={style.blockDescriptionDate}>
+            <div className={style.wrapperCheck}>
             <div className={style.TextDescr}>Genre</div>
 
             <div className={style.Check}>
@@ -177,6 +175,7 @@ export const AddFilms = () => {
                     </div>
                   );
                 })}
+            </div>
             </div>
           </div>
           <div className={style.blockTextarea}>

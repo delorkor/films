@@ -2,7 +2,7 @@ import { Input } from "../../components/Input/Input";
 import styles from "./Header.module.css";
 import { Link } from "../../components/Link/Link";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ModalFilter } from "../ModalFilter/ModalFilter";
 import pagesRoutes from "../../routes/pagesRoutes";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { ButtonComp } from "../../components/ButtonComp/ButtonComp";
 export const Header = () => {
   const dispatch = useDispatch();
   const [modalActiv, modalActivFunction] = useState(false);
-
+  const navigate = useNavigate();
   const name = useSelector((state) => state.user.name);
 
   // console.log(name);
@@ -20,6 +20,11 @@ export const Header = () => {
     e.preventDefault();
     // console.log(localStorage.getItem("user"));
     modalActivFunction(!modalActiv);
+  };
+  const exit = (e) => {
+    e.preventDefault();
+    delete localStorage.user;
+    navigate(pagesRoutes.MAIN);
   };
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -87,6 +92,33 @@ export const Header = () => {
                   <div className={styles.nicname}>
                     <h3>{name ?? ""}</h3>
                   </div>
+                  <div className={styles.filterMenu}>
+                    <Link className={styles.Linknavigation} onClick={exit}>
+                      <svg
+                        className={styles.Linknavigation}
+                        width="56px"
+                        height="56px"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14 7.63636L14 4.5C14 4.22386 13.7761 4 13.5 4L4.5 4C4.22386 4 4 4.22386 4 4.5L4 19.5C4 19.7761 4.22386 20 4.5 20L13.5 20C13.7761 20 14 19.7761 14 19.5L14 16.3636"
+                          stroke="#323537"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M10 12L21 12M21 12L18.0004 8.5M21 12L18 15.5"
+                          stroke="#323537"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               ) : (
                 <div className={`${styles.nicname}`}>
@@ -100,24 +132,6 @@ export const Header = () => {
                   </h3>
                 </div>
               )}
-              <div className={styles.filterMenu}>
-                <Link className={styles.linkModal} onClick={includeModal}>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M17 10L12 14L7 10"
-                      stroke="#AFB2B6"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </Link>
-              </div>
             </div>
           </div>
         </div>

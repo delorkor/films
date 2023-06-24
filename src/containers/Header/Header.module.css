@@ -97,7 +97,8 @@
   text-align: center;
   height: 56px;
   max-width: 113px;
-  margin-right: 56px;
+  /* margin-right: 36px; */
+
   /* position: relative; */
 }
 h3 {
@@ -112,9 +113,9 @@ h3 {
 }
 .filterMenu {
   /* display: inline-block; */
-  margin-top: 16px;
-  width: 24px;
-  height: 24px;
+  /* margin-top: 16px; */
+  width: 56px;
+  height: 56px;
 }
 .linkModal {
   cursor: pointer;
@@ -146,4 +147,15 @@ h3 {
 }
 .ButtonAdd:hover {
   background-color: #7b61ff;
+}
+.Linknavigation {
+  /* margin-bottom: 40px; */
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #80858b;
+}
+.Linknavigation:hover > path {
+  stroke: #7b61ff;
 }
