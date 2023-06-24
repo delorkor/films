@@ -122,12 +122,23 @@ export const Header = () => {
                 </div>
               ) : (
                 <div className={`${styles.nicname}`}>
-                  <h3 className={styles.auth}>
+                  <h3
+                    className={styles.auth}
+                    style={{
+                      marginLeft: "0px",
+                    }}
+                  >
                     <NavLink
                       to={pagesRoutes.AUTH}
-                      style={{ textDecoration: "none", color: "#fff" }}
+                      style={{
+                        marginRight: "50px",
+                        // MaxWidth: "200px",
+                        // marginLeft: "-10px",
+                        textDecoration: "none",
+                        color: "#fff",
+                      }}
                     >
-                      Sign in
+                      Вход/Регистация
                     </NavLink>
                   </h3>
                 </div>

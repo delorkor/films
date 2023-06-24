@@ -60,16 +60,12 @@ export const Navigation = () => {
               </li>
             );
           })}
-        <li className={style.List}>
-          <NavLink to={pagesRoutes.MOVIE} className={style.Linknavigation}>
-            Добавить фильм
-          </NavLink>
-        </li>
-        <li className={style.List}>
+
+        {/* <li className={style.List}>
           <Link className={style.Linknavigation} onClick={exit}>
             exit
           </Link>
-        </li>
+        </li> */}
       </ul>
 
       <ul className={style.ListNavi}>
@@ -90,6 +86,14 @@ export const Navigation = () => {
               </li>
             );
           })}
+      </ul>
+      <ul className={style.ListNavi}>
+        <div className={style.NameList}>Админ-панель</div>
+        <li className={style.List}>
+          <NavLink to={pagesRoutes.MOVIE} className={style.Linknavigation}>
+            Добавить фильм
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
